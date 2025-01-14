@@ -1,17 +1,10 @@
 import { NextPage } from 'next';
-import { useState } from 'react';
 
 import Button from '@/components/common/parts/Button';
-
-const COLORS = ['lightblue', 'lightgreen', 'lightpink', 'lavender', 'wheat'];
+import { COLORS, useChangeBgColor } from '@/hooks/useChangeBgColor';
 
 const Page: NextPage = () => {
-  const [currentColorIndex, setCurrentColorIndex] = useState(0);
-
-  const changeColor = () => {
-    setCurrentColorIndex((prevState) => (prevState + 1) % COLORS.length);
-  };
-
+  const { currentColorIndex, changeColor } = useChangeBgColor();
   return (
     <div className="h-screen pt-8" style={{ backgroundColor: COLORS[currentColorIndex] }}>
       <div className="flex justify-center">

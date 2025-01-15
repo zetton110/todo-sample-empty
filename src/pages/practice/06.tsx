@@ -1,21 +1,10 @@
 import { NextPage } from 'next';
-import { ChangeEvent, useState } from 'react';
 
 import Button from '@/components/common/parts/Button';
+import { useDisplayFeedback } from '@/hooks/useDisplayFeedback';
 
 const Page: NextPage = () => {
-  const [inputValue, setInputValue] = useState('');
-  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const [feedbackList, setFeedbackList] = useState<string[]>([]);
-  const handleSubmit = () => {
-    if (!inputValue.trim()) return;
-    setFeedbackList((prevState) => [...prevState, inputValue]);
-    setInputValue('');
-  };
-
+  const { inputValue, feedbackList, handleInputChange, handleSubmit } = useDisplayFeedback();
   return (
     <div className="mx-auto mt-8 max-w-4xl">
       <div className="flex justify-center">
